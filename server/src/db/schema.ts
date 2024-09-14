@@ -8,10 +8,9 @@ export const goals = pgTable('goals', {
   title: text('title').notNull(),
   desiredWeeklyFrequency: integer('desired_weekly_frequency').notNull(),
   createdAt: timestamp('created_at', { withTimezone: true })
-    .defaultNow()
-    .notNull(),
+    .notNull()
+    .defaultNow(),
 })
-
 export const goalsCompletions = pgTable('goals_completions', {
   id: text('id')
     .primaryKey()
@@ -21,5 +20,5 @@ export const goalsCompletions = pgTable('goals_completions', {
     .notNull(),
   createdAt: timestamp('created_at', { withTimezone: true })
     .defaultNow()
-    .notNull(),
+    .notNull()
 })
