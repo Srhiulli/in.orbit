@@ -83,6 +83,7 @@ export async function getWeekSummary() {
         `,
 		})
 		.from(goalsCompletedByWeekDay);
+
 	return {
 		summary: result[0],
 	};
