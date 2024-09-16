@@ -29,7 +29,6 @@ export function Summary() {
 	const completedPercentage = Math.round(data.completed * 100) / data.total;
 
 	return (
-		<Dialog>
 			<div className="py-10 max-w-[480px] px-5 mx-auto flex flex-col gap-6">
 				<div className="flex items-center justify-between ">
 					<div className="flex items-center gap-3">
@@ -101,6 +100,5 @@ export function Summary() {
 						})}
 				</div>
 			</div>
-		</Dialog>
 	);
 }
