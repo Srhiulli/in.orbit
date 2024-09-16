@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@fastify/cors": "^9.0.1",
-    "drizzle-orm": "^0.33.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.9.0"
-  }
-}
