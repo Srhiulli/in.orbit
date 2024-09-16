@@ -11,8 +11,10 @@ import { RadioGroupIndicator, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
 import { X } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
-import { string, z } from "zod";
+import {  z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createGoal } from "../http/create-goal";
+import { useQueryClient } from "@tanstack/react-query";
 
 const createGoalForm = z.object({
 	title: z.string().min(1, "informe a atividade que deseja realizar"),
@@ -22,12 +24,19 @@ const createGoalForm = z.object({
 type createGoalFrom= z.infer<typeof createGoalForm> 
 
 export function CreateGoal() {
-	const { register, control, handleSubmit, formState } = useForm<createGoalFrom>({
+	const queryClient = useQueryClient();
+	const { register, control, handleSubmit, formState, reset } = useForm<createGoalFrom>({
 		resolver: zodResolver(createGoalForm),
 	});
 
-	function hendleCreateGoal(data: createGoalFrom) {
-		console.log(data);
+	async function hendleCreateGoal(data: createGoalFrom) {
+	await createGoal({
+		title:data.title,
+		desiredWeeklyFrequency: data.desiredWeeklyFrequency,
+	})
+	queryClient.invalidateQueries({ queryKey: ["summary"] });
+	queryClient.invalidateQueries({ queryKey: ["pending-goals"] });
+	reset()
 	}
 
 
